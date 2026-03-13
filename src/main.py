@@ -27,8 +27,8 @@ class TicTacToe:
             [ TILE_EMPTY, TILE_EMPTY, TILE_EMPTY ],
             [ TILE_EMPTY, TILE_EMPTY, TILE_EMPTY ]
         ]
-        self.breiteZelle = 1.0 / 3  # x der Zelle, da 3 Zellen pro Zeile
-        self.hoeheZelle = 1.0 / 3   # y der Zelle, da 3 Zellen pro Spalte
+        self.breiteZelle = 1.0 / 3 
+        self.hoeheZelle = 1.0 / 3  
 
     def __deinit__(self):
         pygame.quit()
@@ -56,7 +56,7 @@ class TicTacToe:
             (self.field[2][0] == tile and self.field[1][1] == tile and self.field[0][2] == tile)
         )
 
-    def player_won(self) -> int: # TURN_X | TURN_O
+    def player_won(self) -> int:
         if self.tile_won(TILE_CROSS):
             return TURN_X_WON
         elif self.tile_won(TILE_CIRCLE):
@@ -84,11 +84,6 @@ class TicTacToe:
         if pygame.mouse.get_just_pressed()[0]:
             pos = pygame.mouse.get_pos()
 
-            # x ux-ox -> tx-zx
-            # y uy-oy -> ty-zy
-            # npx = (x - ux) / (ox - ux)
-            # px =  tx + npx * (zx - tx) 
-
             tx = int(pos[0] / self.WIDTH * 3)
             ty = int(pos[1] / self.HEIGHT * 3)
     
@@ -98,10 +93,6 @@ class TicTacToe:
             elif self.field_empty(tx,ty) and self.turn == TURN_X:
                 self.turn = TURN_O
                 self.field_set(tx, ty, TILE_CROSS)
-                
-            # if pos[0] > self.field[x] + self.breiteZelle and pos[1] < self.field[y] - self.hoeheZelle:
-            #     self.field[y][x] = TILE_CROSS
-
 
     def x_fill(self, y, tile) -> int:
         if self.field[y][0] == TILE_EMPTY and self.field[y][1] == tile and self.field[y][2] == tile:
@@ -183,8 +174,8 @@ class TicTacToe:
     def render(self):
         BOARD_SIZE = min(self.WIDTH, self.HEIGHT)
 
-        self.player_click()
         self.player_bot()
+        self.player_click()
         
         if self.turn == TURN_X_WON:
             self.screen.fill("red")
