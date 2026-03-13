@@ -69,7 +69,8 @@ class TicTacToe:
         winner = self.player_won()
         if winner != TURN_NONE:
             self.turn = winner
-
+            return 
+    
         for y in range(0, 3):
             for x in range(0, 3):
                 if self.field[y][x] == TILE_EMPTY:
@@ -174,8 +175,8 @@ class TicTacToe:
     def render(self):
         BOARD_SIZE = min(self.WIDTH, self.HEIGHT)
 
-        self.player_bot()
         self.player_click()
+        self.player_bot()
         
         if self.turn == TURN_X_WON:
             self.screen.fill("red")

@@ -1,0 +1,13 @@
+.venv/*
+
+*.o
+*.out
+*.exe
+*.a
+*.so
+
+*~
+*.bak
+*.swp
+
+.vscode/
